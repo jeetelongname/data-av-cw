@@ -1,0 +1,110 @@
+\documentclass{report}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=cyan]{hyperref} %% links
+\usepackage[style=apa, backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage[british]{babel}
+\addbibresource{data-av.bib}
+\usepackage{graphicx}
+\usepackage[top=1.5cm]{geometry}
+\title{Some Statistics of Gun Violence In the United States between the years of
+2015 to 2018}
+
+\author{Jeetadtya Chatterjee --- UP2063130}
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{The Data}\label{chapt:data}
+To curate the data I spent time coercing the data into types I can work with. I
+discarded all rows before the first of January 2015 as specified in the
+document. When doing numerical calculations I treated nil values as a neutral
+element. This adds a level of error to each column but allows for the whole set
+of columns to pull as much information from the data set.
+Other than that I have had to scale a lot of my calculations to work on an
+average of months due to 2018 only contains the first 3 month of
+data. This allows us to extrapolate what the entirety of 2018 would have looked
+like but as shown in~\ref{chapt:plot4} there seems to be a dip in cases in the
+first three months of the year showing a kind of shrinking overall even when
+this may not be the case.
+
+\chapter{The average monthly, Incidents, Injuries and Deaths for each year.}\label{chapt:plot1}
+For my first visualisation. I have calculated the average monthly incidents for
+each year. This is showing a slight increase every year with a drop off in 2018.
+see~\ref{chapt:data} for the reason why. This allows us to get a feel for
+gun violence on a national scale but does not tell us if this is homogeneous
+over the USA or if there are a couple of hot spots that are accounting for the
+overall trend.
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[scale = 0.6]
+		{/home/jeet/code/R/data-av/coursework/scripts/plot_1/plot1.png}}
+	\caption{\label{fig:1} A bar chart showing the average monthly incidents, injuries and deaths}
+\end{figure}
+
+\chapter{The average monthly incidents, injuries and deaths for each year; broken down by state}\label{chapt:plot2}
+\begin{quote}
+	\textbf{Link to the visualisation:
+		\url{https://jeetelongname.shinyapps.io/plot_2/}}
+\end{quote}
+For this visulisation I have used population estimates from the US Census bureau
+\autocite{bureau2019NationalState} to calculate the incident rate per 100,000
+people.
+
+Here we can see how that District of Columbia seems to be much higher than the
+average. It as a state seems to lead the numbers of incidents per 100,000. With
+a large spike in 2017, going from a mean value of incidents of 6, to 13. The
+District of Columbia is the capital of the United States and is just a single
+City. There is no other state that can compare to this. But it suggests a
+correlation of Population density to gun incidents.
+
+\chapter{Scatter map of gun incidents each year}\label{chapt:plot3}
+\begin{quote}
+	\textbf{Link to the visualisation:
+		\url{https://jeetelongname.shinyapps.io/plot_3/}}
+\end{quote}
+For this visulsation I use the Simple features package
+\autocite{pebesmaSimpleFeaturesStandardized2018} which provides support for
+spatial data. For the actual spatial data of US states I used
+\autocite{CRANPackageUSA}.
+
+Here we can see that how a lot of gun incidents are congregating around certain
+areas. We call these areas towns and cities. These are most pronounced in the
+states of Nevada, New York and Alaska. Going back to our special outlier in the
+District of Columbia we can see a clear divide where the North Western portion
+of the city is mostly free from these incidents while a majority of the center
+and the south bank has many more incidents.
+
+\chapter{Time series plot of incidents in each state over each year }\label{chapt:plot4}
+\begin{quote}
+	\textbf{Link to the visualisation:
+		\url{https://jeetelongname.shinyapps.io/plot_4/}}
+\end{quote}
+
+We have discussed where these incidents have been taking place but not when nor
+how. In this next visualisation we plot each incident as a function of time.
+Here we see that incidents in a lot of states seem to go down before rising back
+up during the summer months. This is most pronounced in the Northern states with
+the outlier of Florida which sees a rise approaching June with a sizable dip as
+we approach the winter months. This pattern is seen clearly on a national
+level.
+
+\chapter{Propotional stacked bars showing age demographics over the time period}\label{chapt:plot5}
+For my final visualisation I want to show the age group mostly affected by gun
+violence. This visualisation does not separate suspects from victims, it just
+shows who is taking part and being affected by gun incidents. The proportions
+are the mean number of people taking part in each year.
+
+Here we can see how Adults (Over 18s) are the most susceptible to gun
+incidents. With teens (12 to 17) being the next big category and then children
+(0 to 11) being the smallest. We see no significant rise
+in the proportions with the slight rise in 2018 coming down to the incomplete
+nature of the data as mentioned in~\ref{chapt:data}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[scale = 0.6]{/home/jeet/code/R/data-av/coursework/scripts/plot_5/plot5.png}}
+	\caption[]{\label{fig:plot5} A proportional bar chart showing the relative
+		change in the age groups affected by gun violence}
+\end{figure}
+
+
+\printbibliography{}
+\end{document}
